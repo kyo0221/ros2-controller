@@ -1,0 +1,4 @@
+controller_node:
+  ros__parameters:
+    linear_max.vel: 1.0
+    angular_max.vel: 1.0
