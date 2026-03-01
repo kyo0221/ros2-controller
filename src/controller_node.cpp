@@ -23,14 +23,14 @@ angular_max_vel(get_parameter("angular_max.vel").as_double())
 }
 
 void Controller::_subscriber_callback_joy(const sensor_msgs::msg::Joy::SharedPtr msg){
-    if(upedge_share(msg->buttons[static_cast<int>(Buttons::Share)])){
+    if(upedge_share(msg->buttons[static_cast<int>(Buttons::BACK)])){
         auto msg_autonomous = std::make_shared<std_msgs::msg::Bool>();
         msg_autonomous->data = is_autonomous = !is_autonomous;
         publisher_autonomous->publish(*msg_autonomous);
         RCLCPP_INFO(this->get_logger(), "自動フラグ : %d", msg_autonomous->data);
     }
 
-    if(upedge_options(msg->buttons[static_cast<int>(Buttons::Options)])){
+    if(upedge_options(msg->buttons[static_cast<int>(Buttons::START)])){
         publisher_restart->publish(*std::make_shared<std_msgs::msg::Empty>());
         RCLCPP_INFO(this->get_logger(), "再稼働");
     }

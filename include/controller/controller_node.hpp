@@ -23,7 +23,6 @@ public:
 private:
     bool old_value = true;
 };
-
 class DownEdge{
 public:
     bool operator()(bool value){
@@ -75,16 +74,14 @@ private:
         up_and_down
     };
     enum class Buttons{
-        Cross,
-        Circle,
-        Triangle,
-        Rectangles,
+        A,
+        B,
+        X,
+        Y,
         L1,
         R1,
-        L2,
-        R2,
-        Share,
-        Options,
+        BACK,
+        START,
         PS,
         L3,
         R3
