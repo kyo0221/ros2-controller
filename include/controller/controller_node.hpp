@@ -62,6 +62,7 @@ private:
     bool is_autonomous = false;
 
     UpEdge upedge_share;
+    UpEdge upedge_buttons;
     UpEdge upedge_options;
 
     enum class Axes{

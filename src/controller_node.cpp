@@ -31,7 +31,7 @@ void Controller::_subscriber_callback_joy(const sensor_msgs::msg::Joy::SharedPtr
         RCLCPP_INFO(this->get_logger(), "自動フラグ : %d", msg_autonomous->data);
     }
 
-    if(upedge_share(msg->buttons[static_cast<int>(Buttons::A)])){
+    if(upedge_buttons(msg->buttons[static_cast<int>(Buttons::A)])){
         publisher_flag->publish(*std::make_shared<std_msgs::msg::Empty>());
         RCLCPP_INFO(this->get_logger(), "フラグ送信");
     }
