@@ -17,6 +17,7 @@ angular_max_vel(get_parameter("angular_max.vel").as_double())
 
     publisher_vel = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", _qos);
     publisher_restart = this->create_publisher<std_msgs::msg::Empty>("restart", _qos);
+    publisher_flag = this->create_publisher<std_msgs::msg::Empty>("flag", _qos);
     publisher_autonomous = this->create_publisher<std_msgs::msg::Bool>("autonomous", _qos);
 
     RCLCPP_INFO(this->get_logger(), "Controller node started.");
@@ -28,6 +29,11 @@ void Controller::_subscriber_callback_joy(const sensor_msgs::msg::Joy::SharedPtr
         msg_autonomous->data = is_autonomous = !is_autonomous;
         publisher_autonomous->publish(*msg_autonomous);
         RCLCPP_INFO(this->get_logger(), "自動フラグ : %d", msg_autonomous->data);
+    }
+
+    if(upedge_buttons(msg->buttons[static_cast<int>(Buttons::A)])){
+        publisher_flag->publish(*std::make_shared<std_msgs::msg::Empty>());
+        RCLCPP_INFO(this->get_logger(), "フラグ送信");
     }
 
     if(upedge_options(msg->buttons[static_cast<int>(Buttons::START)])){

@@ -51,6 +51,7 @@ private:
 
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_vel;
     rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr publisher_restart;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr publisher_flag;
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr publisher_autonomous;
 
     rclcpp::QoS _qos = rclcpp::QoS(10);
@@ -61,6 +62,7 @@ private:
     bool is_autonomous = false;
 
     UpEdge upedge_share;
+    UpEdge upedge_buttons;
     UpEdge upedge_options;
 
     enum class Axes{
