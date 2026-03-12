@@ -4,6 +4,7 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <sensor_msgs/msg/joy.hpp>
 #include <std_msgs/msg/empty.hpp>
+#include <std_msgs/msg/u_int8.hpp>
 #include <std_msgs/msg/bool.hpp>
 
 namespace controller{
@@ -52,6 +53,7 @@ private:
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_vel;
     rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr publisher_restart;
     rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr publisher_flag;
+    rclcpp::Publisher<std_msgs::msg::UInt8>::SharedPtr publisher_command;
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr publisher_autonomous;
 
     rclcpp::QoS _qos = rclcpp::QoS(10);
@@ -60,6 +62,7 @@ private:
     const double angular_max_vel;
 
     bool is_autonomous = false;
+    uint8_t command = 0;
 
     UpEdge upedge_share;
     UpEdge upedge_buttons;
